@@ -1,5 +1,4 @@
-"use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { redirect } from "next/navigation";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
@@ -7,12 +6,11 @@ const ProfilePage = async () => {
   const { getUser, isAuthenticated } = getKindeServerSession();
 
   const user = await getUser();
-  useEffect(async () => {
-    const isUserAuthenticated = await isAuthenticated();
-    if (!isUserAuthenticated) {
-      redirect("/api/auth/login");
-    }
-  }, []);
+
+  const isUserAuthenticated = await isAuthenticated();
+  if (!isUserAuthenticated) {
+    redirect("/api/auth/login");
+  }
   console.log(getUser);
   return (
     <div>
