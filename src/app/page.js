@@ -6,14 +6,16 @@ const home = async () => {
   const posts = await res.json();
 
   return (
-    <div className="container mx-auto">
-      <h2>All blogs {posts.length}</h2>
-      {posts.map((post) => (
-        <Link href={`/blogs/${post.id}`} key={post.id}>
-          {" "}
-          <li>{post.title}</li>
-        </Link>
-      ))}
+    <div className="w-10/12 mx-auto">
+      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {posts.map((post) => (
+          <Link href={`/blogs/${post.id}`} key={post.id}>
+            <li className="border p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              {post.title}
+            </li>
+          </Link>
+        ))}
+      </ul>
     </div>
   );
 };

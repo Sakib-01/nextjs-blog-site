@@ -51,15 +51,14 @@ export default async function Profile() {
   const { isAuthenticated, getUser } = getKindeServerSession();
 
   if (!(await isAuthenticated())) {
-    // Redirect to login if not authenticated
-    redirect("/api/auth/login"); // Adjust the path to your login page if different
+    redirect("/api/auth/login");
     return null;
   }
 
   const user = await getUser();
 
   return (
-    <section className="container mx-auto min-h-screen">
+    <section className="w-10/12 mx-auto min-h-screen">
       <p className="text-3xl font-semibold">
         Welcome to your profile {user?.given_name} {user?.family_name}
       </p>
