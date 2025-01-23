@@ -57,10 +57,12 @@ const Navbar = async () => {
     </>
   );
   return (
-    <div className="w-10/12 mx-auto my-10">
-      <div className="flex justify-between items-center w-full">
-        <h2 className="text-3xl ">Next.js-Blog</h2>
-        <ul className="flex gap-6 ">{links}</ul>
+    <div className="w-full bg-[#0a0a0a] sticky top-0 z-10 py-3">
+      <div className="w-10/12 mx-auto my-5   ">
+        <div className="flex justify-between items-center w-full">
+          <h2 className="text-3xl ">Next.js-Blog</h2>
+          <ul className="flex gap-6 ">{links}</ul>
+        </div>
       </div>
     </div>
   );
