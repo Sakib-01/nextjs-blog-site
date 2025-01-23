@@ -6,7 +6,7 @@ const home = async () => {
   const posts = await res.json();
 
   return (
-    <div>
+    <div className="container mx-auto">
       <h2>All blogs {posts.length}</h2>
       {posts.map((post) => (
         <Link href={`/blogs/${post.id}`} key={post.id}>

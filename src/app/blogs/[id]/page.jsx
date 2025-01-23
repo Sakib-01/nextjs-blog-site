@@ -25,8 +25,7 @@ const SingleBlog = () => {
   }
 
   return (
-    <div>
-      <h2>Single Blog</h2>
+    <div className="container mx-auto">
       <div className="p-6">
         <h1 className="text-2xl font-bold mb-4">
           <span className="underline">Blog title </span> : {post.title}
