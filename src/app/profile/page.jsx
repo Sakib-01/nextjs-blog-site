@@ -1,19 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { redirect } from "next/navigation";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const ProfilePage = async () => {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
   const { getUser, isAuthenticated } = getKindeServerSession();
 
-  // Check if the user is authenticated
-  const isUserAuthenticated = await isAuthenticated();
-  if (!isUserAuthenticated) {
-    redirect("/api/auth/login");
-    return null; // Prevent further rendering
-  }
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const isUserAuthenticated = await isAuthenticated();
+      if (!isUserAuthenticated) {
+        redirect("/api/auth/login");
+        return;
+      }
 
-  // Fetch the user details
-  const user = await getUser();
+      const userData = await getUser();
+      setUser(userData);
+      setLoading(false);
+    };
+
+    fetchUserData();
+  }, [getUser, isAuthenticated]);
+
+  if (loading) {
+    return <div>Loading...</div>; // Add a loading indicator
+  }
 
   return (
     <div className="container mx-auto my-10">
