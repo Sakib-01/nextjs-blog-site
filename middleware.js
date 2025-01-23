@@ -18,3 +18,23 @@
 // export const config = {
 //   matcher: "/profile", // Protects all routes under /profile
 // };
+
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { NextResponse } from "next/server";
+
+export async function middleware(request) {
+  const { isAuthenticated } = getKindeServerSession();
+  const isUserAuthenticated = await isAuthenticated();
+
+  // const user = "true";
+
+  if (!isUserAuthenticated) {
+    return NextResponse.redirect(new URL("/api/auth/login", request.url));
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: ["/profile"],
+};
