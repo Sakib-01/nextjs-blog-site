@@ -1,34 +1,44 @@
 import React from "react";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const ProfilePage = async () => {
-  // Get the user's session
-  const { getUser, isAuthenticated } = await getKindeServerSession();
+  const { getUser, isAuthenticated } = getKindeServerSession();
 
-  const user = await getUser();
-  // If the user is not authenticated or the user object is missing, redirect them to the login page
-  if (!user) {
+  const isUserAuthenticated = await isAuthenticated();
+  if (!isUserAuthenticated) {
     redirect("/api/auth/login");
   }
-
-  // If authenticated, display the user's profile
+  console.log(getUser);
+  const user = await getUser();
   return (
-    <div className="text-center p-6">
-      <h2 className="text-3xl font-bold">Welcome to your profile</h2>
-      <p className="mt-4 text-lg">
-        {user ? (
-          <>
-            <span>
-              Hello, {user?.given_name} {user?.family_name}!
-            </span>
-          </>
-        ) : (
-          "User information not available."
-        )}
-      </p>
+    <div>
+      <h2 className="text-3xl">
+        Welcome to your profile{" "}
+        {/* <span>
+          Mr {user?.given_name} {user?.family_name}
+        </span> */}
+      </h2>
     </div>
   );
 };
 
 export default ProfilePage;
+
+// function app() {
+//   return <div>Welcome to your profile</div>;
+// }
+
+// export default app;
+// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+
+// export default function Profile() {
+//   const { user } = getKindeServerSession();
+
+//   return (
+//     <div className="p-6">
+//       <h1 className="text-3xl font-bold">Welcome to your profile!</h1>
+//       {user && <p className="mt-4">Hello, {user.given_name}!</p>}
+//     </div>
+//   );
+// }
