@@ -20,35 +20,46 @@ const Navbar = async () => {
     <>
       <li>
         {" "}
-        <Link href={"/"}>Blog</Link>
+        <Link className="border-2 rounded-md  px-3 py-2" href={"/"}>
+          Blog
+        </Link>
       </li>
       <li>
         {" "}
-        <Link href={"/profile"}>Profile</Link>{" "}
+        <Link className="border-2 rounded-md  px-3 py-2" href={"/profile"}>
+          Profile
+        </Link>{" "}
       </li>
       {isUserAuthenticated ? (
         <>
           <li>
-            <LogoutLink>Log out</LogoutLink>{" "}
+            <LogoutLink className="border-2 rounded-md  px-3 py-2">
+              Log out
+            </LogoutLink>{" "}
           </li>
         </>
       ) : (
         <>
           <li>
             {" "}
-            <LoginLink>Login</LoginLink>
+            <LoginLink className="border-2 rounded-md  px-3 py-2">
+              Login
+            </LoginLink>
           </li>
           <li>
             {" "}
-            <RegisterLink>Registerr</RegisterLink>{" "}
+            <RegisterLink className="border-2 rounded-md  px-3 py-2">
+              Registerr
+            </RegisterLink>{" "}
           </li>
         </>
       )}
     </>
   );
   return (
-    <div className="container mx-auto my-10">
-      <div>
+    <div className="w-10/12 mx-auto my-10">
+      <div className="flex justify-between items-center w-full">
+        <h2 className="text-3xl ">Next.js-Blog</h2>
         <ul className="flex gap-6 ">{links}</ul>
       </div>
     </div>

@@ -21,9 +21,10 @@ const SingleBlog = () => {
   }, [id]);
 
   if (!post) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center">Loading...</div>;
   }
 
+  // console.log(post);
   return (
     <div className="w-10/12 mx-auto">
       <div className="p-6">
