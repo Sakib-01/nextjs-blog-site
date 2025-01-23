@@ -13,5 +13,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: "/profile/:path*", // Protects all routes under /profile
+  matcher: "/profile", // Protects all routes under /profile
 };
