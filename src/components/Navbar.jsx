@@ -22,6 +22,7 @@ const Navbar = async () => {
           </li>
           {user ? (
             <>
+              <h2>{user?.given_name}</h2>
               <li>
                 <Link href={"/api/auth/logout"}>logout</Link>
               </li>
