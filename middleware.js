@@ -1,7 +1,10 @@
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/dist/types/server";
 import { NextResponse } from "next/server";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/edge"; // Use edge runtime for Vercel
+// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"; // Use edge runtime for Vercel
 
 export async function middleware(req) {
+  // const { isAuthenticated } = getKindeServerSession();
+  const { getUser } = getKindeServerSession();
   const { isAuthenticated } = getKindeServerSession();
   const isUserAuthenticated = await isAuthenticated();
 
